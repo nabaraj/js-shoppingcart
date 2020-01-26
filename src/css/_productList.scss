@@ -1,0 +1,14 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    .grid{
+        width:20%;
+        padding:10px;
+        .imageBox{
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

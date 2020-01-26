@@ -1,0 +1,84 @@
+$coloer-blue:#4268ea;
+$color-white:#ffffff;
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+// Usage as a mixin
+.clearFix {
+  @include clearfix;
+}
+
+*{
+  box-sizing: border-box;
+  
+}
+body, html{
+  padding:0;
+  margin:0;
+}
+
+#footer,
+#header{
+  background-color: $coloer-blue;
+  color: $color-white;
+  padding:10px 0;
+}
+.headerLeft{
+  float: left;
+  padding-left:10px;
+}
+.headerRight{
+  float: right;
+  padding-right:10px;
+}
+.text-center{
+  text-align: center;
+}
+.container{
+  width:100%;
+  display: flex;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+label {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+.headerIcon{
+  position: relative;
+  padding:3px;
+  display: inline-block;
+  color:$color-white;
+}
+.hidden{
+  display: none !important;
+}
+#count{
+  position: relative;
+    top: -4px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+.homeIcon{
+  display: none;
+}
+.cart {
+  .cartCount{
+    display:none;
+  }
+  .homeIcon{
+    display: inline;
+  }
+}
+@import './sidebar';
+@import './content';
+@import './productList';
