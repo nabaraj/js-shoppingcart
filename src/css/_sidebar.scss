@@ -2,9 +2,31 @@
     flex-basis: 20%;
     max-width: 20%;
     background-color: #f1f3f6;
-    padding:10px;
-}
+    @include mobile{
+      flex-basis: 100%;
+      max-width: 100%;
 
+    }
+    form{
+      padding:10px;
+    }
+}
+.topFilter {
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  padding-left: 20%;
+  top:25px;
+  @include mobile{
+    position: static;
+    padding: 0;
+
+  }
+  .topFilterWrapper{
+    padding:10px;
+  }
+}
 @mixin range-slider($width, $height, $input-top, $input-bg-color, $input-thumb-color, $float:none, $input-height:8px, $input-border-radius:14px) {
     position: relative;
     width: $width;
@@ -20,8 +42,8 @@
       border: none;
       border-radius: $input-border-radius;
       background: $input-bg-color;
-      box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
-      -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+      // box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
+      // -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color,15%), inset 0 -1px 0 0 darken($input-bg-color,10%);
       overflow: hidden;
       left: 0;
       top: $input-top;
@@ -90,6 +112,6 @@
   }
   
   section.range-slider {
-    @include range-slider(100%, 100px, 50px, #F1EFEF, #413F41, left);
+    @include range-slider(100%, 100px, 50px, $coloer-blue, #413F41, left);
   }
   

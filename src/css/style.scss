@@ -8,6 +8,84 @@ $color-white:#ffffff;
     clear: both;
   }
 }
+/*Mobile, tablet, desktop media queries Use by just saying @include and adding its styles inside*/
+$tablet-width: 768px;
+$desktop-width: 992px;
+$lgdesktop-width: 1200px;
+
+@mixin not-mobile {
+  @media screen and (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: #{$tablet-width}) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet-mobile {
+  @media screen and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-tablet {
+  @media screen and (min-width: #{$tablet-width}) and (max-width: #{$lgdesktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$desktop-width}) and (max-width: #{$lgdesktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-lgdesktop {
+  @media screen and (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin lgdesktop {
+  @media screen and (min-width: #{$lgdesktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait {
+  @media screen and (min-width: #{$tablet-width}) and (max-width: 1024px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape {
+  @media screen and (min-width: #{$tablet-width}) and (max-width: 1024px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+/* To use media queries we just have to say @include tablet{font-size:14px} */
 
 // Usage as a mixin
 .clearFix {
@@ -43,6 +121,7 @@ body, html{
 .container{
   width:100%;
   display: flex;
+  flex-wrap: wrap;
 }
 .form-group {
   margin-bottom: 1rem;
@@ -56,6 +135,7 @@ label {
   padding:3px;
   display: inline-block;
   color:$color-white;
+  text-decoration: none;
 }
 .hidden{
   display: none !important;
@@ -67,6 +147,7 @@ label {
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 12px;
+    text-decoration: none;
 }
 .homeIcon{
   display: none;
@@ -79,6 +160,22 @@ label {
     display: inline;
   }
 }
+.productImage{
+  width:20%;
+}
+.responsive-img{
+  max-width: 100%;
+  height: auto;
+}
+.products{
+  flex-basis: 80%;
+  max-width: 80%;
+  @include mobile{
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
 @import './sidebar';
 @import './content';
 @import './productList';
+@import './cart';

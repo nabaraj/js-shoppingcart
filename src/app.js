@@ -9,6 +9,8 @@ const gD = {}
 var products = [];
 const filterData={}
 var bodyClass = "";
+let cartPrice = 0;
+let cartDiscount = 0;
 // slider start
 function getVals(){
   // Get slider values
@@ -20,7 +22,7 @@ function getVals(){
   if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
   
   var displayElement = parent.getElementsByClassName("rangeValues")[0];
-      displayElement.innerHTML = "$ " + slide1 + "k - $" + slide2 + "k";
+      displayElement.innerHTML = "&#8377;" + slide1 + "k - &#8377;" + slide2 + "k";
 }
 
 window.onload = function(){
@@ -60,8 +62,17 @@ document.addEventListener("click", function(e) {
       gD[productId] = {...gD[productId]};
     }
     console.log(Object.values(gD));
+    cartPrice = 0;
+    cartDiscount = 0;
+    
     let totalProduct = Object.values(gD).reduce((a,i)=>{
-      console.log("###",i.quantity);
+      console.log("###",i);
+      let discount = (i.discount === 0
+        ? i.price
+        : Math.floor((i.price / i.discount)));
+        console.log(discount);
+      cartPrice = cartPrice + i.price
+      cartDiscount = cartDiscount+discount;
       return a+i.quantity;
     },0)
     $("#count").text(totalProduct)
@@ -73,23 +84,18 @@ document.addEventListener("click", function(e) {
 
 const router = new Router();
   router.get('/', function(req){
-      console.log(req.path); // outputs /about-me to the console
-      
       document.getElementById("app").innerHTML=renderProductPage(filterData ,storeEvent, products);
   })
   router.get('/cart', function(req){
-    console.log(req.path, gD); // outputs /about-me to the console
-    
-    document.getElementById("app").innerHTML=cartPage(gD);
+    document.getElementById("app").innerHTML=cartPage(gD, cartPrice, cartDiscount);
 })
 router.init();
 $(document).ready(function(){
-  console.log("ttt");
   $(".cartCount, .homeIcon").click(function(e){
     e.preventDefault();
     var href = $(this).attr("href");
-    history.pushState({}, "Home", href);
-    //window.location.href = '/cart';
+    var title = $(this).attr("title");
+    history.pushState({}, title, href);
     console.log(history);
     router.init();
   })

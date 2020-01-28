@@ -1,6 +1,5 @@
 import $ from "jquery";
 
-
 export const renderProductPage = function(filterData, storeEvent, products) {
   //   $.get('https://api.myjson.com/bins/qzuzi')
   $("body").removeClass("cart");
@@ -16,13 +15,21 @@ export const renderProductPage = function(filterData, storeEvent, products) {
 
   return `<div class="container">
             <div class="sidebar">
+                <div class="topFilter">
+                  <div class="topFilterWrapper">
+                    <h3>Sort By</h3>
+                    <span>Price -- High-Low</span>
+                    <span>Price -- Low-High</span>
+                    <span>Discount</span>
+                    </div>
+                </div>
                 <form>
                     <h3>Filters</h3>
                     <div class="form-group">
                         <section class="range-slider">
                             <span class="rangeValues"></span>
-                            <input value="500" min="500" max="50000" step="500" type="range">
-                            <input value="50000" min="500" max="50000" step="500" type="range">
+                            <input value="100" min="100" max="10000" step="100" type="range">
+                            <input value="10000" min="100" max="10000" step="100" type="range">
                         </section>
                         <div class="text-center">
                         <button>Apply</button>
@@ -30,13 +37,7 @@ export const renderProductPage = function(filterData, storeEvent, products) {
                     </div>
                 </form>
             </div>
-            <div class="products">
-                <div class="topFilter">
-                    <h3>Sort By</h3>
-                    <span>Price -- High-Low</span>
-                    <span>Price -- Low-High</span>
-                    <span>Discount</span>
-                </div>
+            <div class="products shoppingList">
                 <div class="list">Loading products..</div>
             </div>
     </div>`.trim();
@@ -54,13 +55,13 @@ function generateGridfunction(products) {
     var priceOrigin =
       data.discount === 0
         ? data.price
-        : Math.floor((data.price / data.discount) * 100);
+        : Math.floor((data.price / data.discount));
     row.push(`<div class="productGrid grid" key="${data.id}">         
                         <div class="imageBox">
                         <img
                             class="responsive-img"
                             src=${data.img_url}
-                            alt="product"
+                            alt="${data.name}"
                         />
                         </div>
                         <h3>${data.name}</h3>
