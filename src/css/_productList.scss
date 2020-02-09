@@ -15,5 +15,8 @@
             display: flex;
             flex-wrap: wrap;
         }
+        @include mobile{
+            width: 100%;
+        }
     }
 }

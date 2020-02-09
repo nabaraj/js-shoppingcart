@@ -20,7 +20,7 @@ module.exports = {
   },
   plugins: [
     new ManifestPlugin(),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),//clear dist folder
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
